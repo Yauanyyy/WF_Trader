@@ -228,7 +228,7 @@ class WarframeTraderApp:
         lf6.columnconfigure(1, weight=1)
 
         # ================= 预览与操作区 =================
-        preview_frame = ttk.LabelFrame(parent, text=" 实时预览区 & 操作 (文本框会自适应高度) ")
+        preview_frame = ttk.LabelFrame(parent, text=" 实时预览")
         preview_frame.pack(fill=tk.BOTH, expand=True, pady=10, ipady=5)
 
         ttk.Label(preview_frame, text="中文喊话:").grid(row=0, column=0, padx=5, pady=5, sticky=tk.NW)
@@ -241,7 +241,7 @@ class WarframeTraderApp:
         self.text_en.grid(row=1, column=1, padx=5, pady=5)
         ttk.Button(preview_frame, text="复制英文", command=lambda: self.copy_to_clipboard(self.text_en.get(1.0, tk.END))).grid(row=1, column=2, padx=5)
 
-        ttk.Label(preview_frame, text="致谢短语\n(快捷回复):").grid(row=2, column=0, padx=5, pady=5, sticky=tk.NW)
+        ttk.Label(preview_frame, text="致谢短语:").grid(row=2, column=0, padx=5, pady=5, sticky=tk.NW)
         self.text_thanks = tk.Text(preview_frame, height=2, width=75, wrap='word', font=('Microsoft YaHei', 9))
         self.text_thanks.grid(row=2, column=1, padx=5, pady=5)
         # 将 StringVar 同步到 Text
