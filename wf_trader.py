@@ -327,9 +327,10 @@ class WarframeTraderApp:
         except:
             count_num = 2
         count_num = max(1, min(4, count_num))
+        wait_num = 4 - count_num
 
         if mode == "人数":
-            cn_msg = f"{relic_cn}光{count_num}====={count_num}"
+            cn_msg = f"{relic_cn}光{count_num}====={wait_num}"
             en_msg = f"H {relic_en} Rad {count_num}/4"
         else:
             cn_msg = f"{relic_cn}光求拉"
