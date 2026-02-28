@@ -1,0 +1,245 @@
+:root {
+  --bg: #f4f7fb;
+  --panel: #ffffff;
+  --text: #16202a;
+  --muted: #5b6b79;
+  --line: #d9e2ec;
+  --primary: #1976d2;
+  --primary-strong: #0d5ca8;
+  --danger: #b3261e;
+  --radius: 12px;
+  --space: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at 0 0, #e7f0ff 0%, var(--bg) 45%);
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+}
+
+.sidebar {
+  background: #0f1720;
+  color: #d6e1ef;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar h1 {
+  margin: 0 0 10px;
+  font-size: 20px;
+}
+
+.sidebar-tip {
+  margin-top: auto;
+  color: #90a4b8;
+  font-size: 13px;
+}
+
+.nav-btn,
+button {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+  color: var(--text);
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.nav-btn {
+  background: #142637;
+  border-color: #1f3950;
+  color: #dbe8f6;
+  text-align: left;
+}
+
+.nav-btn.active {
+  background: #1f4f7b;
+  border-color: #2d6ea6;
+  color: #ffffff;
+}
+
+button:hover {
+  border-color: var(--primary);
+}
+
+.main {
+  padding: 20px;
+  display: grid;
+  gap: 14px;
+}
+
+[data-region] {
+  display: grid;
+  gap: 14px;
+}
+
+[data-region].hidden {
+  display: none;
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px;
+  display: grid;
+  gap: 12px;
+}
+
+.card h2,
+.card h3 {
+  margin: 0;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+}
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text);
+  padding: 8px 10px;
+  font: inherit;
+}
+
+textarea {
+  min-height: 52px;
+  resize: none;
+}
+
+.inline-grid {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.grid-2,
+.grid-4,
+.grid-5 {
+  display: grid;
+  gap: 10px;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.grid-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.preview-box {
+  display: grid;
+  gap: 8px;
+}
+
+.copy-btn {
+  justify-self: start;
+}
+
+.ratio-row {
+  display: flex;
+  gap: 18px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.list-container {
+  display: grid;
+  gap: 10px;
+}
+
+.quick-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.item-card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px;
+  display: grid;
+  gap: 10px;
+}
+
+.item-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.danger {
+  color: var(--danger);
+  border-color: #e2b5b2;
+}
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  min-width: 120px;
+  max-width: 280px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all .2s ease;
+  background: #1d2a36;
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px 12px;
+  pointer-events: none;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 960px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  .grid-5 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}

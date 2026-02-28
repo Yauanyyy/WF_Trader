@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WF Trader Web</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <h1>WF Trader</h1>
+      <button class="nav-btn" data-region-target="trade">交易区域</button>
+      <button class="nav-btn" data-region-target="team">组队区域</button>
+      <div class="sidebar-tip">状态自动保存到本地</div>
+    </aside>
+
+    <main class="main">
+      <section class="card global-card">
+        <h2>致谢短语</h2>
+        <div class="field-row">
+          <label for="thanks_msg">消息</label>
+          <input id="thanks_msg" type="text" data-bind="thanks_msg">
+        </div>
+        <div class="preview-box">
+          <textarea id="thanks_preview" readonly></textarea>
+          <button class="copy-btn" data-copy-target="thanks_preview">复制</button>
+        </div>
+      </section>
+
+      <section id="region_trade" data-region="trade">
+        <section class="card">
+          <h2>模块1 Prime Junk 收购</h2>
+          <div class="inline-grid">
+            <label><input type="checkbox" data-bind="m1_active"> 启用</label>
+            <label>模式
+              <select data-bind="m1_mode">
+                <option value="group">按组</option>
+                <option value="single">按个</option>
+              </select>
+            </label>
+            <label>白金单位
+              <select data-bind="m1_plat_token">
+                <option value=":platinum:">:platinum:</option>
+                <option value="p">p</option>
+              </select>
+            </label>
+          </div>
+          <div class="grid-5">
+            <label>铜组<input type="text" data-bind="m1_g_bronze"></label>
+            <label>假银组<input type="text" data-bind="m1_g_fsilver"></label>
+            <label>银组<input type="text" data-bind="m1_g_silver"></label>
+            <label>假金组<input type="text" data-bind="m1_g_fgold"></label>
+            <label>金组<input type="text" data-bind="m1_g_gold"></label>
+          </div>
+          <div class="grid-5">
+            <label>铜个<input type="text" data-bind="m1_s_bronze"></label>
+            <label>假银个<input type="text" data-bind="m1_s_fsilver"></label>
+            <label>银个<input type="text" data-bind="m1_s_silver"></label>
+            <label>假金个<input type="text" data-bind="m1_s_fgold"></label>
+            <label>金个<input type="text" data-bind="m1_s_gold"></label>
+          </div>
+          <div class="ratio-row">
+            <div id="m1_ratio_group">组模式比值: -</div>
+            <div id="m1_ratio_single">个模式比值: -</div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>模块2 Relics 收购</h2>
+          <div class="inline-grid">
+            <label><input type="checkbox" data-bind="m2_active"> 启用</label>
+            <label><input type="checkbox" data-bind="m2_rad"> 光辉+1p</label>
+            <label>白金单位
+              <select data-bind="m2_plat_token">
+                <option value=":platinum:">:platinum:</option>
+                <option value="p">p</option>
+              </select>
+            </label>
+          </div>
+          <div class="grid-4">
+            <label>Lith<input type="text" data-bind="m2_lith"></label>
+            <label>Meso<input type="text" data-bind="m2_meso"></label>
+            <label>Neo<input type="text" data-bind="m2_neo"></label>
+            <label>Axi<input type="text" data-bind="m2_axi"></label>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>模块3 Aya 收购</h2>
+          <div class="inline-grid">
+            <label><input type="checkbox" data-bind="m3_active"> 启用</label>
+            <label><input type="checkbox" data-bind="m3_rad"> 光辉+1p</label>
+            <label>白金单位
+              <select data-bind="m3_plat_token">
+                <option value=":platinum:">:platinum:</option>
+                <option value="p">p</option>
+              </select>
+            </label>
+          </div>
+          <label>Aya价格<input type="text" data-bind="m3_aya"></label>
+        </section>
+
+        <section class="card">
+          <h2>模块4 自定义多物品</h2>
+          <div class="inline-grid">
+            <label><input type="checkbox" data-bind="m4_active"> 启用</label>
+            <label>白金单位
+              <select data-bind="m4_plat_token">
+                <option value=":platinum:">:platinum:</option>
+                <option value="p">p</option>
+              </select>
+            </label>
+            <button id="m4_add_item" type="button">新增条目</button>
+          </div>
+          <div id="m4_items_container" class="list-container"></div>
+        </section>
+
+        <section class="card">
+          <h2>模块5 自定义后缀</h2>
+          <div class="inline-grid">
+            <label>白金单位
+              <select data-bind="m5_plat_token">
+                <option value=":platinum:">:platinum:</option>
+                <option value="p">p</option>
+              </select>
+            </label>
+          </div>
+          <div class="grid-2">
+            <label>中文后缀<input type="text" data-bind="m5_cn"></label>
+            <label>英文后缀<input type="text" data-bind="m5_en"></label>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>交易预览</h2>
+          <div class="preview-box">
+            <label for="trade_cn_preview">交易中文喊话</label>
+            <textarea id="trade_cn_preview" readonly></textarea>
+            <button class="copy-btn" data-copy-target="trade_cn_preview">复制中文</button>
+          </div>
+          <div class="preview-box">
+            <label for="trade_en_preview">Trade English</label>
+            <textarea id="trade_en_preview" readonly></textarea>
+            <button class="copy-btn" data-copy-target="trade_en_preview">Copy English</button>
+          </div>
+        </section>
+      </section>
+
+      <section id="region_team" data-region="team">
+        <section class="card">
+          <h2>模块6 遗物组队高频消息</h2>
+          <div class="grid-4">
+            <label>纪元
+              <select data-bind="m6_epoch">
+                <option value="Lith">Lith</option>
+                <option value="Meso">Meso</option>
+                <option value="Neo">Neo</option>
+                <option value="Axi">Axi</option>
+              </select>
+            </label>
+            <label>代码<input type="text" data-bind="m6_code"></label>
+            <label>模式
+              <select data-bind="m6_mode">
+                <option value="求拉">求拉</option>
+                <option value="人数">人数</option>
+              </select>
+            </label>
+            <label>人数(1-4)<input type="text" data-bind="m6_count"></label>
+          </div>
+          <label>备注<input type="text" data-bind="m6_note"></label>
+          <div class="inline-grid">
+            <button id="m6_add_history" type="button">添加到历史</button>
+          </div>
+          <div class="preview-box">
+            <label for="m6_cn_preview">模块6中文</label>
+            <textarea id="m6_cn_preview" readonly></textarea>
+            <button class="copy-btn" data-copy-target="m6_cn_preview">复制中文</button>
+          </div>
+          <div class="preview-box">
+            <label for="m6_en_preview">Module6 English</label>
+            <textarea id="m6_en_preview" readonly></textarea>
+            <button class="copy-btn" data-copy-target="m6_en_preview">Copy English</button>
+          </div>
+          <h3>历史记录</h3>
+          <div id="m6_history_container" class="list-container"></div>
+        </section>
+
+        <section class="card">
+          <h2>模块7 自定义组队短语快捷模块</h2>
+          <button id="m7_add_item" type="button">新增短语</button>
+          <div id="m7_quick_buttons" class="quick-buttons"></div>
+          <div id="m7_items_container" class="list-container"></div>
+          <div class="preview-box">
+            <label for="m7_quick_cn_preview">快捷中文输出</label>
+            <textarea id="m7_quick_cn_preview" readonly></textarea>
+            <button class="copy-btn" data-copy-target="m7_quick_cn_preview">复制中文</button>
+          </div>
+          <div class="preview-box">
+            <label for="m7_quick_en_preview">Quick English Output</label>
+            <textarea id="m7_quick_en_preview" readonly></textarea>
+            <button class="copy-btn" data-copy-target="m7_quick_en_preview">Copy English</button>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>组队区域预览</h2>
+          <div class="preview-box">
+            <label for="team_cn_preview">组队中文总览</label>
+            <textarea id="team_cn_preview" readonly></textarea>
+            <button class="copy-btn" data-copy-target="team_cn_preview">复制</button>
+          </div>
+          <div class="preview-box">
+            <label for="team_en_preview">Team English Summary</label>
+            <textarea id="team_en_preview" readonly></textarea>
+            <button class="copy-btn" data-copy-target="team_en_preview">Copy</button>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
